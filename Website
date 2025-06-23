@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutland AI Solutions - Empowering Local Businesses with Practical AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Warm Neutral Harmony" - A calming palette with a light beige/off-white background, complemented by soft grays, a gentle teal for accents, and a dark slate for text. -->
+    <!-- Application Structure Plan: The website is structured as a linear, scrolling single-page application, divided into thematic sections: Home, About Us, Services, Why Choose Us, How It Works, Try Our AI, Testimonials, and Contact. A sticky navigation bar at the top provides quick access to these sections, highlighting the user's current position on the page. This linear flow is intuitive for a marketing website, guiding the user through the value proposition step-by-step while allowing them to jump directly to areas of interest like services or contact information. -->
+    <!-- Visualization & Content Choices:
+        - Hero Section: Features a bold headline, clear call-to-action, and a brief value statement. Goal: Capture attention & Inform. Method: HTML, Tailwind CSS.
+        - About Us: Presents the company's mission, vision, and the founder's unique blend of skills. Goal: Build trust & Inform. Method: HTML, Tailwind CSS.
+        - Services: Uses interactive cards with hover effects to reveal more detailed information about each service. This prevents visual clutter while offering depth. Goal: Inform & Engage. Method: HTML, Tailwind CSS, JS for interactivity.
+        - Why Choose Us: Highlights key differentiators and benefits in an easy-to-digest list format. Goal: Persuade & Inform. Method: HTML, Tailwind CSS.
+        - How It Works: Visualizes the client engagement process using a clear, step-by-step layout. Goal: Explain & Simplify. Method: HTML, Tailwind CSS.
+        - Try Our AI: A new interactive section featuring an AI-powered content idea generator. Users input business type and topic to get LLM-generated ideas, demonstrating the "AI for Content & Communication Automation" service directly. Goal: Engage & Demonstrate Value. Method: HTML, Tailwind CSS, JS (for user input handling, API call to Gemini, and dynamic content display).
+        - Testimonials: A section for future social proof. Goal: Build credibility. Method: HTML, Tailwind CSS.
+        - Contact Us: Provides clear contact information and a simple form. Goal: Convert leads. Method: HTML, Tailwind CSS.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4; /* Light Beige */
+            color: #333D45; /* Dark Slate */
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #005A5B; /* Teal accent */
+        }
+        .hero {
+            background-color: #F0EDE5; /* Slightly darker beige for hero */
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .service-card .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .service-card:hover .details {
+            max-height: 200px;
+        }
+        .process-step {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .process-step:hover {
+            transform: translateY(-3px);
+            background-color: #EAE8E1; /* Slightly darker beige */
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 90, 91, 0.1);
+            border-left-color: #005A5B;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-[#333D45]">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm py-4 px-6 md:px-10 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="bg-[#005A5B] p-2 rounded-lg mr-3">
+                <span class="text-white text-xl font-bold">AI</span>
+            </div>
+            <a href="#home" class="text-xl font-bold text-[#333D45]">Rutland AI Solutions</a>
+        </div>
+        <div class="space-x-6 hidden md:flex">
+            <a href="#about" class="nav-link font-medium">About Us</a>
+            <a href="#services" class="nav-link font-medium">Services</a>
+            <a href="#why-us" class="nav-link font-medium">Why Choose Us</a>
+            <a href="#how-it-works" class="nav-link font-medium">How It Works</a>
+            <a href="#try-ai" class="nav-link font-medium">Try Our AI</a>
+            <a href="#contact" class="nav-link font-medium">Contact</a>
+        </div>
+        <a href="#contact" class="md:hidden text-[#005A5B] font-semibold hover:underline">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero py-20 px-6 md:px-10 min-h-screen flex items-center justify-center text-center">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-[#333D45] mb-6">Empowering Rutland's Businesses with Practical AI</h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8">Save Time, Cut Costs, Grow Smarter – Tailored AI Solutions for Local SMEs.</p>
+            <a href="#contact" class="inline-block bg-[#005A5B] text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-[#007071] transition duration-300">Book a Free AI Opportunity Discovery Call</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 px-6 md:px-10 bg-[#F8F7F4]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">About Rutland AI Solutions</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">Discover our mission to bring the power of Artificial Intelligence directly to the heart of Oakham and Rutland's vibrant local business community.</p>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#005A5B] mb-4">Our Mission & Vision</h3>
+                    <p class="text-gray-700 mb-4">Our mission is to unlock the practical benefits of Artificial Intelligence for Oakham and Rutland's local businesses, enhancing their productivity, efficiency, and market presence through accessible, tailored solutions and hands-on support.</p>
+                    <p class="text-gray-700">Our vision is to be the leading and most trusted partner for rural SMEs in the Oakham and Rutland region seeking to leverage modern technology for sustainable growth and operational excellence.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-[#005A5B] mb-4">Your Expert Partner</h3>
+                    <p class="text-gray-700 mb-4">As a recent Business and Marketing graduate with strong technology and design experience, I bring a unique blend of skills to help your business thrive. I understand the strategic goals, the marketing challenges, the technical possibilities, and the importance of good design.</p>
+                    <p class="text-gray-700">My aim is to provide practical, no-jargon AI solutions that genuinely solve your business problems, all delivered with a personal, local touch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-6 md:px-10 bg-[#EAE8E1]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">Our Practical AI Services</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">We offer a range of targeted AI services designed to integrate seamlessly into your business, making complex technology simple and effective. Hover over each service to learn more.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-4xl text-[#005A5B] mr-4">✎</span>
+                        <h3 class="text-2xl font-bold text-[#333D45]">AI for Content & Communication Automation</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Leverage Generative AI to streamline your text-based content creation and daily communications.</p>
+                    <div class="details mt-4">
+                        <p class="text-sm text-gray-600">Stop staring at a blank page! We'll help you use AI tools to quickly draft social media posts, engaging product descriptions, compelling email newsletters, and even summarise long documents. Perfect for consistently engaging your customers and saving hours on writing tasks.</p>
+                    </div>
+                </div>
+
+                <div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-4xl text-[#005A5B] mr-4">⚙️</span>
+                        <h3 class="text-2xl font-bold text-[#333D45]">AI for Administrative Efficiency</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Implement smart AI solutions to automate routine administrative tasks and manage data more efficiently.</p>
+                    <div class="details mt-4">
+                        <p class="text-sm text-gray-600">Reduce manual workload and free up valuable time. This includes setting up AI-powered email sorting, meeting note summarisation, creating simple chatbots for website FAQs, and streamlining data entry from documents. Get more done with less effort.</p>
+                    </div>
+                </div>
+
+                <div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-4xl text-[#005A5B] mr-4">✦</span>
+                        <h3 class="text-2xl font-bold text-[#333D45]">AI-Enhanced Visuals & Design</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Utilise AI-powered design tools to quickly create and enhance eye-catching marketing visuals.</p>
+                    <div class="details mt-4">
+                        <p class="text-sm text-gray-600">No need for a full-time graphic designer! We'll show you how to use intuitive AI design platforms (like Canva AI) for quick background removals, generating design ideas, creating variations of images, and producing stunning social media graphics. Elevate your brand's visual appeal effortlessly.</p>
+                    </div>
+                </div>
+
+                <div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-4xl text-[#005A5B] mr-4">💡</span>
+                        <h3 class="text-2xl font-bold text-[#333D45]">AI Readiness Assessment & Training</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Gain a clear understanding of AI's potential for your business with tailored education and hands-on workshops.</p>
+                    <div class="details mt-4">
+                        <p class="text-sm text-gray-600">Unsure where to start with AI? Our assessment identifies your most impactful opportunities. We then provide practical, jargon-free workshops (group or one-on-one) covering AI fundamentals, prompt engineering, and best practices, empowering you and your team to leverage AI confidently.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-16 px-6 md:px-10 bg-[#F8F7F4]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">Why Choose Rutland AI Solutions?</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">In a world of complex tech, we offer a refreshingly practical, local, and results-driven approach.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">🔍</div>
+                    <h3 class="text-xl font-semibold mb-2">Demystified AI</h3>
+                    <p class="text-gray-700 text-sm">We translate complex AI into simple, actionable steps for your business.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">🏠</div>
+                    <h3 class="text-xl font-semibold mb-2">Hyper-Local Focus</h3>
+                    <p class="text-gray-700 text-sm">We understand the unique needs and nuances of businesses in Oakham and Rutland.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">◎</div>
+                    <h3 class="text-xl font-semibold mb-2">Holistic Expertise</h3>
+                    <p class="text-gray-700 text-sm">Benefit from insights in business strategy, marketing, technology, and design – all in one place.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">👥</div>
+                    <h3 class="text-xl font-semibold mb-2">Hands-on Training & Support</h3>
+                    <p class="text-gray-700 text-sm">We empower you and your team to confidently use AI tools, with ongoing assistance.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">📈</div>
+                    <h3 class="text-xl font-semibold mb-2">Results-Oriented</h3>
+                    <p class="text-gray-700 text-sm">Our focus is on delivering tangible benefits: time saved, costs reduced, growth achieved.</p>
+                </div>
+                 <div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="text-3xl text-[#005A5B] mb-3">👤</div>
+                    <h3 class="text-xl font-semibold mb-2">Human-in-the-Loop</h3>
+                    <p class="text-gray-700 text-sm">AI is a tool to assist, not replace. We ensure your unique human touch remains central.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 px-6 md:px-10 bg-[#EAE8E1]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">How It Works: Our Simple Process</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">Engaging with Rutland AI Solutions is straightforward and designed for maximum impact with minimal fuss for your business.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-2">Free Discovery Call</h3>
+                    <p class="text-gray-700 text-sm">A quick chat to understand your challenges and explore AI's potential.</p>
+                </div>
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-2">AI Opportunity Assessment</h3>
+                    <p class="text-gray-700 text-sm">An in-depth look at your operations to pinpoint where AI can add value.</p>
+                </div>
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-2">Tailored Proposal</h3>
+                    <p class="text-gray-700 text-sm">We'll present a clear plan with specific solutions, costs, and expected benefits.</p>
+                </div>
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">4</div>
+                    <h3 class="text-xl font-bold mb-2">Seamless Implementation</h3>
+                    <p class="text-gray-700 text-sm">We handle the setup of AI tools and integrate them into your workflow.</p>
+                </div>
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">5</div>
+                    <h3 class="text-xl font-bold mb-2">Hands-On Training</h3>
+                    <p class="text-gray-700 text-sm">Empowering you and your team to confidently use the new AI capabilities.</p>
+                </div>
+                <div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+                    <div class="text-5xl text-[#005A5B] mb-4">6</div>
+                    <h3 class="text-xl font-bold mb-2">Ongoing Support</h3>
+                    <p class="text-gray-700 text-sm">Continuous check-ins, troubleshooting, and optimisation for long-term success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Try Our AI Section -->
+    <section id="try-ai" class="py-16 px-6 md:px-10 bg-[#F8F7F4]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">Try Our AI: Content Idea Generator</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center">Experience the power of AI first-hand. Tell us about your business and a topic, and we'll generate some content ideas for you!</p>
+
+            <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <div class="space-y-6">
+                    <div>
+                        <label for="businessType" class="block text-sm font-medium text-gray-700 mb-2">Your Business Type (e.g., Farm Shop, Plumber, B&B)</label>
+                        <input type="text" id="businessType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="e.g., Local Cafe">
+                    </div>
+                    <div>
+                        <label for="contentTopic" class="block text-sm font-medium text-gray-700 mb-2">Content Topic or Goal (e.g., Spring promotions, new services, community event)</label>
+                        <input type="text" id="contentTopic" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="e.g., Summer Menu">
+                    </div>
+                    <button id="generateIdeasBtn" class="w-full bg-[#005A5B] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-[#007071] transition duration-300">Generate Ideas</button>
+                    
+                    <div id="loadingIndicator" class="hidden flex justify-center items-center py-4">
+                        <div class="loading-spinner"></div>
+                        <p class="ml-3 text-gray-600">Generating ideas...</p>
+                    </div>
+                    <div id="aiOutput" class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-800 whitespace-pre-wrap" style="min-height: 100px;">
+                        Your AI-generated content ideas will appear here.
+                    </div>
+                    <p id="errorMessage" class="text-red-600 text-sm mt-2 hidden">An error occurred. Please try again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section (Placeholder) -->
+    <section id="testimonials" class="py-16 px-6 md:px-10 bg-[#EAE8E1]">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6">What Our Clients Say</h2>
+            <p class="text-lg text-gray-600 mb-12">Hear from local businesses in Oakham and Rutland who have transformed their operations with our practical AI solutions.</p>
+            <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <p class="text-xl italic text-gray-700 mb-4">"Rutland AI Solutions made AI truly accessible for our farm shop. We're now saving hours on social media content creation every week!"</p>
+                <p class="font-semibold text-[#005A5B]">- Local Farm Shop Owner, Rutland</p>
+                <p class="text-sm text-gray-500 mt-2">*(More testimonials coming soon as we grow!)*</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 md:px-10 bg-[#F8F7F4]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center">Ready to Transform Your Business?</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center">Book a free, no-obligation AI Opportunity Discovery Call today to explore how practical AI can benefit your Oakham or Rutland business.</p>
+
+            <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="businessName" class="block text-sm font-medium text-gray-700 mb-2">Business Name</label>
+                        <input type="text" id="businessName" name="businessName" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="Rutland Local Bakery">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="john.doe@example.com">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="07xxx xxxxxx">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">How can we help you?</label>
+                        <textarea id="message" name="message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="Tell us about your business goals or AI questions..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#005A5B] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-[#007071] transition duration-300">Book Your Discovery Call</button>
+                </form>
+            </div>
+            <p class="text-center text-gray-600 text-sm mt-8">Prefer to chat? Call us at [Your Phone Number] or email us at [Your Email Address].</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#333D45] text-white py-8 px-6 md:px-10 text-center text-sm">
+        <p>&copy; 2025 Rutland AI Solutions. All rights reserved.</p>
+        <p class="mt-2">Empowering Oakham & Rutland Businesses with Intelligent Solutions.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - document.querySelector('nav').offsetHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            const contactForm = document.querySelector('#contact form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your inquiry! We will get back to you shortly.');
+                contactForm.reset();
+            });
+
+            // AI Content Idea Generator Logic
+            const businessTypeInput = document.getElementById('businessType');
+            const contentTopicInput = document.getElementById('contentTopic');
+            const generateIdeasBtn = document.getElementById('generateIdeasBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const aiOutput = document.getElementById('aiOutput');
+            const errorMessage = document.getElementById('errorMessage');
+
+            generateIdeasBtn.addEventListener('click', async () => {
+                const businessType = businessTypeInput.value.trim();
+                const contentTopic = contentTopicInput.value.trim();
+
+                if (!businessType || !contentTopic) {
+                    errorMessage.textContent = 'Please enter both a business type and a content topic.';
+                    errorMessage.classList.remove('hidden');
+                    aiOutput.textContent = '';
+                    return;
+                }
+
+                errorMessage.classList.add('hidden');
+                aiOutput.textContent = '';
+                loadingIndicator.classList.remove('hidden');
+                generateIdeasBtn.disabled = true;
+
+                const prompt = `Suggest 5 unique content ideas for a ${businessType} in a rural area like Rutland, focusing on the topic of ${contentTopic}. Present them as a numbered list.`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        aiOutput.textContent = text;
+                    } else {
+                        aiOutput.textContent = 'Could not generate ideas. Please try again.';
+                        errorMessage.textContent = 'Unexpected API response structure.';
+                        errorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    aiOutput.textContent = 'Failed to generate ideas. Please check your input and internet connection.';
+                    errorMessage.textContent = `Error: ${error.message}`;
+                    errorMessage.classList.remove('hidden');
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    generateIdeasBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

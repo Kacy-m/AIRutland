@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Rutland AI Solutions - Empowering Local Businesses with Practical AI&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chosen Palette: "Warm Neutral Harmony" - A calming palette with a light beige/off-white background, complemented by soft grays, a gentle teal for accents, and a dark slate for text. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Application Structure Plan: The website is structured as a linear, scrolling single-page application, divided into thematic sections: Home, About Us, Services, Why Choose Us, How It Works, Try Our AI, Testimonials, and Contact. A sticky navigation bar at the top provides quick access to these sections, highlighting the user's current position on the page. This linear flow is intuitive for a marketing website, guiding the user through the value proposition step-by-step while allowing them to jump directly to areas of interest like services or contact information. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization &amp; Content Choices:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Hero Section: Features a bold headline, clear call-to-action, and a brief value statement. Goal: Capture attention &amp; Inform. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- About Us: Presents the company's mission, vision, and the founder's unique blend of skills. Goal: Build trust &amp; Inform. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Services: Uses interactive cards with hover effects to reveal more detailed information about each service. This prevents visual clutter while offering depth. Goal: Inform &amp; Engage. Method: HTML, Tailwind CSS, JS for interactivity.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Why Choose Us: Highlights key differentiators and benefits in an easy-to-digest list format. Goal: Persuade &amp; Inform. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- How It Works: Visualizes the client engagement process using a clear, step-by-step layout. Goal: Explain &amp; Simplify. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Try Our AI: A new interactive section featuring an AI-powered content idea generator. Users input business type and topic to get LLM-generated ideas, demonstrating the "AI for Content &amp; Communication Automation" service directly. Goal: Engage &amp; Demonstrate Value. Method: HTML, Tailwind CSS, JS (for user input handling, API call to Gemini, and dynamic content display).</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Testimonials: A section for future social proof. Goal: Build credibility. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Contact Us: Provides clear contact information and a simple form. Goal: Convert leads. Method: HTML, Tailwind CSS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F8F7F4; /* Light Beige */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333D45; /* Dark Slate */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link.active, .nav-link:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #005A5B; /* Teal accent */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F0EDE5; /* Slightly darker beige for hero */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.service-card .details {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: max-height 0.5s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.service-card:hover .details {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.process-step {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.process-step:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-3px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #EAE8E1; /* Slightly darker beige */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-spinner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid rgba(0, 90, 91, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-left-color: #005A5B;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: spin 1s linear infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spin {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="text-[#333D45]"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navbar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="sticky top-0 z-50 bg-white shadow-sm py-4 px-6 md:px-10 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-[#005A5B] p-2 rounded-lg mr-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-white text-xl font-bold"&gt;AI&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#home" class="text-xl font-bold text-[#333D45]"&gt;Rutland AI Solutions&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="space-x-6 hidden md:flex"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#about" class="nav-link font-medium"&gt;About Us&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#services" class="nav-link font-medium"&gt;Services&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#why-us" class="nav-link font-medium"&gt;Why Choose Us&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#how-it-works" class="nav-link font-medium"&gt;How It Works&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#try-ai" class="nav-link font-medium"&gt;Try Our AI&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#contact" class="nav-link font-medium"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="#contact" class="md:hidden text-[#005A5B] font-semibold hover:underline"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="home" class="hero py-20 px-6 md:px-10 min-h-screen flex items-center justify-center text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-[#333D45] mb-6"&gt;Empowering Rutland's Businesses with Practical AI&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl md:text-2xl text-gray-700 mb-8"&gt;Save Time, Cut Costs, Grow Smarter – Tailored AI Solutions for Local SMEs.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#contact" class="inline-block bg-[#005A5B] text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-[#007071] transition duration-300"&gt;Book a Free AI Opportunity Discovery Call&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- About Us Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about" class="py-16 px-6 md:px-10 bg-[#F8F7F4]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-6xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;About Rutland AI Solutions&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto"&gt;Discover our mission to bring the power of Artificial Intelligence directly to the heart of Oakham and Rutland's vibrant local business community.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 gap-10 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold text-[#005A5B] mb-4"&gt;Our Mission &amp; Vision&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 mb-4"&gt;Our mission is to unlock the practical benefits of Artificial Intelligence for Oakham and Rutland's local businesses, enhancing their productivity, efficiency, and market presence through accessible, tailored solutions and hands-on support.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;Our vision is to be the leading and most trusted partner for rural SMEs in the Oakham and Rutland region seeking to leverage modern technology for sustainable growth and operational excellence.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-6 bg-white rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold text-[#005A5B] mb-4"&gt;Your Expert Partner&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 mb-4"&gt;As a recent Business and Marketing graduate with strong technology and design experience, I bring a unique blend of skills to help your business thrive. I understand the strategic goals, the marketing challenges, the technical possibilities, and the importance of good design.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;My aim is to provide practical, no-jargon AI solutions that genuinely solve your business problems, all delivered with a personal, local touch.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Services Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="services" class="py-16 px-6 md:px-10 bg-[#EAE8E1]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-6xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;Our Practical AI Services&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto"&gt;We offer a range of targeted AI services designed to integrate seamlessly into your business, making complex technology simple and effective. Hover over each service to learn more.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-4xl text-[#005A5B] mr-4"&gt;✎&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold text-[#333D45]"&gt;AI for Content &amp; Communication Automation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 font-medium"&gt;Leverage Generative AI to streamline your text-based content creation and daily communications.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="details mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-600"&gt;Stop staring at a blank page! We'll help you use AI tools to quickly draft social media posts, engaging product descriptions, compelling email newsletters, and even summarise long documents. Perfect for consistently engaging your customers and saving hours on writing tasks.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-4xl text-[#005A5B] mr-4"&gt;⚙️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold text-[#333D45]"&gt;AI for Administrative Efficiency&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 font-medium"&gt;Implement smart AI solutions to automate routine administrative tasks and manage data more efficiently.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="details mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-600"&gt;Reduce manual workload and free up valuable time. This includes setting up AI-powered email sorting, meeting note summarisation, creating simple chatbots for website FAQs, and streamlining data entry from documents. Get more done with less effort.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-4xl text-[#005A5B] mr-4"&gt;✦&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold text-[#333D45]"&gt;AI-Enhanced Visuals &amp; Design&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 font-medium"&gt;Utilise AI-powered design tools to quickly create and enhance eye-catching marketing visuals.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="details mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-600"&gt;No need for a full-time graphic designer! We'll show you how to use intuitive AI design platforms (like Canva AI) for quick background removals, generating design ideas, creating variations of images, and producing stunning social media graphics. Elevate your brand's visual appeal effortlessly.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card card bg-white rounded-xl shadow-sm p-8 cursor-pointer border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-4xl text-[#005A5B] mr-4"&gt;💡&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold text-[#333D45]"&gt;AI Readiness Assessment &amp; Training&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 font-medium"&gt;Gain a clear understanding of AI's potential for your business with tailored education and hands-on workshops.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="details mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-600"&gt;Unsure where to start with AI? Our assessment identifies your most impactful opportunities. We then provide practical, jargon-free workshops (group or one-on-one) covering AI fundamentals, prompt engineering, and best practices, empowering you and your team to leverage AI confidently.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Why Choose Us Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="why-us" class="py-16 px-6 md:px-10 bg-[#F8F7F4]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-6xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;Why Choose Rutland AI Solutions?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto"&gt;In a world of complex tech, we offer a refreshingly practical, local, and results-driven approach.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;🔍&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Demystified AI&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;We translate complex AI into simple, actionable steps for your business.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;🏠&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Hyper-Local Focus&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;We understand the unique needs and nuances of businesses in Oakham and Rutland.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;◎&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Holistic Expertise&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;Benefit from insights in business strategy, marketing, technology, and design – all in one place.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;👥&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Hands-on Training &amp; Support&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;We empower you and your team to confidently use AI tools, with ongoing assistance.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;📈&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Results-Oriented&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;Our focus is on delivering tangible benefits: time saved, costs reduced, growth achieved.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="card bg-white p-6 rounded-xl shadow-sm border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-3xl text-[#005A5B] mb-3"&gt;👤&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Human-in-the-Loop&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;AI is a tool to assist, not replace. We ensure your unique human touch remains central.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- How It Works Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="how-it-works" class="py-16 px-6 md:px-10 bg-[#EAE8E1]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-6xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;How It Works: Our Simple Process&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto"&gt;Engaging with Rutland AI Solutions is straightforward and designed for maximum impact with minimal fuss for your business.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;1&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Free Discovery Call&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;A quick chat to understand your challenges and explore AI's potential.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;2&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;AI Opportunity Assessment&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;An in-depth look at your operations to pinpoint where AI can add value.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;3&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Tailored Proposal&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;We'll present a clear plan with specific solutions, costs, and expected benefits.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;4&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Seamless Implementation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;We handle the setup of AI tools and integrate them into your workflow.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;5&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Hands-On Training&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;Empowering you and your team to confidently use the new AI capabilities.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="process-step bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl text-[#005A5B] mb-4"&gt;6&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Ongoing Support&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700 text-sm"&gt;Continuous check-ins, troubleshooting, and optimisation for long-term success.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Try Our AI Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="try-ai" class="py-16 px-6 md:px-10 bg-[#F8F7F4]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;Try Our AI: Content Idea Generator&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center"&gt;Experience the power of AI first-hand. Tell us about your business and a topic, and we'll generate some content ideas for you!&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-md border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="businessType" class="block text-sm font-medium text-gray-700 mb-2"&gt;Your Business Type (e.g., Farm Shop, Plumber, B&amp;B)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="businessType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="e.g., Local Cafe"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="contentTopic" class="block text-sm font-medium text-gray-700 mb-2"&gt;Content Topic or Goal (e.g., Spring promotions, new services, community event)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="contentTopic" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="e.g., Summer Menu"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="generateIdeasBtn" class="w-full bg-[#005A5B] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-[#007071] transition duration-300"&gt;Generate Ideas&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="loadingIndicator" class="hidden flex justify-center items-center py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="loading-spinner"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="ml-3 text-gray-600"&gt;Generating ideas...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="aiOutput" class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-800 whitespace-pre-wrap" style="min-height: 100px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Your AI-generated content ideas will appear here.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p id="errorMessage" class="text-red-600 text-sm mt-2 hidden"&gt;An error occurred. Please try again.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Testimonials Section (Placeholder) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="testimonials" class="py-16 px-6 md:px-10 bg-[#EAE8E1]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6"&gt;What Our Clients Say&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12"&gt;Hear from local businesses in Oakham and Rutland who have transformed their operations with our practical AI solutions.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-md border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl italic text-gray-700 mb-4"&gt;"Rutland AI Solutions made AI truly accessible for our farm shop. We're now saving hours on social media content creation every week!"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="font-semibold text-[#005A5B]"&gt;- Local Farm Shop Owner, Rutland&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500 mt-2"&gt;*(More testimonials coming soon as we grow!)*&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Contact Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="contact" class="py-16 px-6 md:px-10 bg-[#F8F7F4]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold text-[#333D45] mb-6 text-center"&gt;Ready to Transform Your Business?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 mb-12 text-center"&gt;Book a free, no-obligation AI Opportunity Discovery Call today to explore how practical AI can benefit your Oakham or Rutland business.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-md border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;form class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="name" class="block text-sm font-medium text-gray-700 mb-2"&gt;Your Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="John Doe"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="businessName" class="block text-sm font-medium text-gray-700 mb-2"&gt;Business Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="businessName" name="businessName" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="Rutland Local Bakery"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="email" class="block text-sm font-medium text-gray-700 mb-2"&gt;Email Address&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="john.doe@example.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="phone" class="block text-sm font-medium text-gray-700 mb-2"&gt;Phone Number (Optional)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="tel" id="phone" name="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="07xxx xxxxxx"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="message" class="block text-sm font-medium text-gray-700 mb-2"&gt;How can we help you?&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;textarea id="message" name="message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005A5B]" placeholder="Tell us about your business goals or AI questions..."&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button type="submit" class="w-full bg-[#005A5B] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-[#007071] transition duration-300"&gt;Book Your Discovery Call&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-center text-gray-600 text-sm mt-8"&gt;Prefer to chat? Call us at [Your Phone Number] or email us at [Your Email Address].&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-[#333D45] text-white py-8 px-6 md:px-10 text-center text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&amp;copy; 2025 Rutland AI Solutions. All rights reserved.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="mt-2"&gt;Empowering Oakham &amp; Rutland Businesses with Intelligent Solutions.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const sections = document.querySelectorAll('section');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const navLinks = document.querySelectorAll('nav a');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const observerOptions = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>root: null,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rootMargin: '0px',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>threshold: 0.3</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const sectionObserver = new IntersectionObserver((entries) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>entries.forEach(entry =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (entry.isIntersecting) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>navLinks.forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>link.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (link.getAttribute('href').substring(1) === entry.target.id) {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>link.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, observerOptions);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>sections.forEach(section =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>sectionObserver.observe(section);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>navLinks.forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>link.addEventListener('click', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const targetId = this.getAttribute('href').substring(1);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const targetSection = document.getElementById(targetId);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (targetSection) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>window.scrollTo({</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>top: targetSection.offsetTop - document.querySelector('nav').offsetHeight,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>behavior: 'smooth'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const contactForm = document.querySelector('#contact form');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>contactForm.addEventListener('submit', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert('Thank you for your inquiry! We will get back to you shortly.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>contactForm.reset();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// AI Content Idea Generator Logic</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const businessTypeInput = document.getElementById('businessType');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const contentTopicInput = document.getElementById('contentTopic');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateIdeasBtn = document.getElementById('generateIdeasBtn');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const loadingIndicator = document.getElementById('loadingIndicator');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const aiOutput = document.getElementById('aiOutput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const errorMessage = document.getElementById('errorMessage');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>generateIdeasBtn.addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const businessType = businessTypeInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const contentTopic = contentTopicInput.value.trim();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!businessType || !contentTopic) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorMessage.textContent = 'Please enter both a business type and a content topic.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>aiOutput.textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorMessage.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>aiOutput.textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadingIndicator.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateIdeasBtn.disabled = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const prompt = `Suggest 5 unique content ideas for a ${businessType} in a rural area like Rutland, focusing on the topic of ${contentTopic}. Present them as a numbered list.`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>let chatHistory = [];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const payload = { contents: chatHistory };</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const apiKey = "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(apiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const result = await response.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content.parts.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const text = result.candidates[0].content.parts[0].text;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>aiOutput.textContent = text;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>aiOutput.textContent = 'Could not generate ideas. Please try again.';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>errorMessage.textContent = 'Unexpected API response structure.';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>errorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>aiOutput.textContent = 'Failed to generate ideas. Please check your input and internet connection.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorMessage.textContent = `Error: ${error.message}`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>loadingIndicator.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateIdeasBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
